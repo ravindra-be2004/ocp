@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: db
+spec:
+  selector:
+    matchLabels:
+      app: database
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: database
+    spec:
+      terminationGracePeriodSeconds: 10
+      containers:
+        - name: db
+          image: quay.io/ravindra_be2004/mysql:latest
+          ports:
+          - name: db
+            containerPort: 3306
+          env:
+          - name: MYSQL_USER
+            value: user1
+          - name: MYSQL_PASSWORD
+            value: redhat
+          - name: MYSQL_DATABASE
+            value: db1
+          volumeMounts:
+          - name: data
+            mountPath: /var/lib/mysql
+  volumeClaimTemplates:
+    - metadata:
+        name: data
+      spec:
+        accessModes: [ "ReadWriteOnce" ]
+        storageClassName: "lvms-vg1"
+        resources:
+          requests:
+            storage: 1Gi
+
+
