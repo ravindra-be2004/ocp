@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: iscsiweb2
+  name: iscsiweb2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: iscsiweb2
+  template:
+    metadata:
+      labels:
+        app: iscsiweb2
+    spec:
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: iscsivolwithpv
+        name: mydemo
+      volumes: 
+      - name: iscsivolwithpv
+        persistentVolumeClaim: 
+          claimName: pvc-iscsi-1
+        resources: {}
+      nodeSelector:
+        kubernetes.io/hostname: worker06
