@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: emptyweb
+  name: emptyweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: emptyweb
+  template:
+    metadata:
+      labels:
+        app: emptyweb
+    spec:
+      #      serviceAccountName: nfs-client-provisioner
+      #      serviceAccount: nfs-client-provisioner
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        name: mydemo
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: emptydirvol
+      volumes:
+      - name: emptydirvol
+        emptyDir: {}

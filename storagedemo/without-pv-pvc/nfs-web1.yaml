@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web
+  name: web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web
+  template:
+    metadata:
+      labels:
+        app: web
+    spec:
+            #      serviceAccount: nfs-client-provisioner
+      serviceAccountName: nfs-client-provisioner
+      serviceAccount: nfs-client-provisioner
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        name: mydemo
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: nfsvol
+      volumes:
+      - name: nfsvol
+        nfs:
+          server: 192.168.50.254
+          path: /nfsdemo
+          readOnly: false
+

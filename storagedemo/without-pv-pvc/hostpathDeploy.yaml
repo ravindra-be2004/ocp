@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: hostpathweb
+  name: hostpathweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hostpathweb
+  template:
+    metadata:
+      labels:
+        app: hostpathweb
+    spec:
+            #      serviceAccount: nfs-client-provisioner
+            #      serviceAccountName: nfs-client-provisioner
+            #      serviceAccount: nfs-client-provisioner
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        name: mydemo
+        volumeMounts:
+        - mountPath: /var/log/httpd
+          name: hostpathvol
+      volumes:
+      - name: hostpathvol
+        hostpath:
+          path: /var/log/httpd
+          type: DirectoryOrCreate

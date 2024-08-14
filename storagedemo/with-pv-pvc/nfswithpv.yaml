@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: nfsweb
+  name: nfsweb
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nfsweb
+  template:
+    metadata:
+      labels:
+        app: nfsweb
+    spec:
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: nfsvolwithpv
+        name: mydemo
+      volumes: 
+      - name: nfsvolwithpv
+        persistentVolumeClaim: 
+          claimName: pvc-nfs-2
+        resources: {}

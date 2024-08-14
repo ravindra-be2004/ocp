@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web1
+  name: web1
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web1
+  template:
+    metadata:
+      labels:
+        app: web1
+    spec:
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        name: mydemo
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: nfsvol
+      volumes:
+        - name: nfsvol
+          nfs:
+            server: 192.168.50.254
+            path: /exports-ocp4
+            readOnly: false

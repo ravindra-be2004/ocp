@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web2
+  name: web2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web2
+  template:
+    metadata:
+      labels:
+        app: web2
+    spec:
+            #      serviceAccount: nfs-client-provisioner
+      containers:
+      - image: registry.access.redhat.com/ubi9/httpd-24:latest
+        name: mydemo
+
