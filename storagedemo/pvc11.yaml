@@ -4,10 +4,14 @@ metadata:
   name: pvc001
 spec:
   accessModes:
-  - ReadWriteOnce
+  - ReadWriteMany
   resources:
     requests:
       storage: 1Gi
-      #  storageClassName: lvms-vg1
-      #  volumeMode: Filesystem
-      #  volumeName: pvc-d10131cf-1da2-4e3f-97d5-93798ae2d221
+  storageClassName: my-nfs-storage
+
+
+
+
+
+
