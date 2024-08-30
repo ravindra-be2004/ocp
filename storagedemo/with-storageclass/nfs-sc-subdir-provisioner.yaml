@@ -1,0 +1,19 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+  name: my-nfs-storage
+parameters:
+  archiveOnDelete: "false"
+  server: 172.25.250.253
+  share: /exports-ocp4/
+provisioner: k8s-sigs.io/nfs-subdir-external-provisioner
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: false
+mountOptions:
+  - hard
+  - nfsvers=4
+
+
+

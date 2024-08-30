@@ -1,0 +1,18 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  annotations:
+    description: Provides RWO and RWX Filesystem volumes
+  name: my-nfs-sc
+parameters:
+  server: 172.25.250.253
+  share: /nfsdemo
+provisioner: nfs.csi.k8s.io
+reclaimPolicy: Delete
+volumeBindingMode: Immediate
+allowVolumeExpansion: false
+mountOptions:
+  - hard
+  - nfsvers=4
+
+

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: web2
+  name: web2
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: web2
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: web2
+    spec:
+      containers:
+      - image: quay.io/ravindra_be2004/mydemo:v1
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+        - mountPath: /var/www/html
+          name: mypod
+        name: mydemo
+      volumes: 
+      - name: mypod
+        persistentVolumeClaim: 
+          claimName: pvc-nfs-3
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
