@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: pvc-lvm
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+  storageClassName: topolvm-provisioner
+
+
+
+
+
+
+
+
+
