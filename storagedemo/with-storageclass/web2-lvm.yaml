@@ -29,7 +29,7 @@ spec:
       volumes: 
       - name: mypod
         persistentVolumeClaim: 
-          claimName: pvc-lvm
+          claimName: pvc-lvm-2
         resources: {}
       dnsPolicy: ClusterFirst
       restartPolicy: Always
