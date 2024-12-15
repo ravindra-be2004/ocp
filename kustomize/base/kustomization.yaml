@@ -1,0 +1,12 @@
+kind: Kustomization
+resources:
+  - web3.yaml
+  - pvc-nfs.yaml 
+  - svc.yaml
+  - route.yaml
+secretGenerator:
+- name: db-secrets
+  literals:
+    - DATABASE_NAME=db1
+    - DATABASE_USER=user1
+    - DATABASE_PASSWORD=redhat
