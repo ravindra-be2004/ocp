@@ -5,6 +5,7 @@ metadata:
     app: web3
   name: web3
 spec:
+  replicas: 2
   selector:
     matchLabels:
       app: web3
