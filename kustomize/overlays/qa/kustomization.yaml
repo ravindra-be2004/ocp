@@ -2,7 +2,7 @@ kind: Kustomization
 resources:
   - ../../base
 patches:
-- path: patch-replicas.yaml 
+- path: patch-resource-request.yaml
   target:
     kind: Deployment
     name: web
