@@ -1,0 +1,14 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+spec:
+  replicas: 4
+  template:
+    spec:
+      containers:
+      - name: mydemo
+        resources:
+          requests:
+            cpu: 200m
+
