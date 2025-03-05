@@ -1,0 +1,42 @@
+apiVersion: demo.example.com/v1alpha1
+kind: Nginx
+metadata:
+  name: nginx-sample
+spec:
+  # Default values copied from <project_dir>/helm-charts/nginx/values.yaml
+  image:
+    pullPolicy: IfNotPresent
+    repository: quay.io/ravindra_be2004/mydemo
+    tag: "v1"
+  imagePullSecrets: []
+  ingress:
+    annotations: {}
+    className: ""
+    enabled: false
+    hosts:
+    - host: demo.apps.ocp4.example.com
+      paths:
+      - path: /
+        pathType: Prefix
+    tls: []
+  nameOverride: ""
+  nodeSelector: {}
+  podAnnotations: {}
+  podLabels: {}
+  podSecurityContext: {}
+  replicaCount: 1
+  resources: {}
+  securityContext: {}
+  service:
+    port: 8080
+    type: ClusterIP
+  serviceAccount:
+    annotations: {}
+    automount: true
+    create: true
+    name: ""
+  tolerations: []
+  volumeMounts: []
+  volumes: []
+  
+  

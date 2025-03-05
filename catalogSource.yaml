@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: CatalogSource
+metadata:
+  name: nginx-operator-catalog-source
+spec:
+  displayName: My Test nginx operator
+  publisher: RedHat India Pvt. Ltd
+  sourceType: grpc
+  image: quay.io/ravindra_be2004/catalog-img03042025:v1
+  updateStrategy:
+    registryPoll:
+      interval: 10m
+

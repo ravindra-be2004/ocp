@@ -1,0 +1,13 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  labels:
+    operators.coreos.com/nginx-operator.demo31: ""
+  name: nginx-operator
+spec:
+  channel: alpha
+  installPlanApproval: Manual
+  name: nginx-operator
+  source: nginx-operator-catalog-source
+  sourceNamespace: demo31
+  startingCSV: nginx-operator.v0.0.1
