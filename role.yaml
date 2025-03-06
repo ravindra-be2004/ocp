@@ -1,0 +1,21 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: manager-role
+  namespace: demo104
+rules:
+##
+## Base operator rules
+##
+# We need to get namespaces so the operator can read namespaces to ensure they exist
+# We need to manage Helm release secrets
+- apiGroups:
+  - ""
+  resources:
+  - secrets
+  - pods
+  verbs:
+  - create
+  - update
+  - get 
+  - list  
