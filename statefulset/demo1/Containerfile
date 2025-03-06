@@ -1,6 +1,6 @@
 FROM ubi8/ubi:8.5
 
-MAINTAINER Your Name <youremail>
+MAINTAINER ravindra <youremail>
 
 ENV DOCROOT=/var/www/html
 

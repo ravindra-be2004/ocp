@@ -1,0 +1,41 @@
+oc new-project demo201
+ 1009  cd statefulset/
+ 1010  ls
+ 1013  vim demo1/Containerfile 
+ 1014  podman images
+ 1015  podman build -t demo demo1/
+ 1016  podman images
+ 1017  podman tag demo:latest quay.io/ravindra_be2004/mindgate0603:v1
+ 1018  podman images
+ 1020  podman push quay.io/ravindra_be2004/mindgate0603:v1 
+ 1021  podman login quay.io
+ 1022  podman push quay.io/ravindra_be2004/mindgate0603:v1 
+ 1023  oc project
+ 1024  oc get all
+ 1025  podman images
+ 1026  oc create deploy web1 --image=quay.io/ravindra_be2004/mindgate0603:v1
+ 1027  oc get pod -w
+ 1028  oc logs web1-77bb8ff48-828gf 
+ 1029  oc get event
+ 1030  oc get pod
+ 1031  oc create sa image-pull
+ 1033  cat $XDG_RUNTIME_DIR/containers/auth.json 
+ 1034  echo $XDG_RUNTIME_DIR
+ 1035  oc create secret generic pullsecret --from-file=.dockerconfigjson=$XDG_RUNTIME_DIR/containers/auth.json --type=kubernetes.io/dockerconfigjson
+ 1036  oc secrets link image-pull pullsecret --for=pull
+ 1037  oc set sa deploy/web1 image-pull
+ 1038  oc get pod -w
+ 1039  oc get event
+ 1040  oc get pod -w
+ 1041  oc logs web1-77bb8ff48-828gf
+ 1044  oc login -u admin -p redhatocp
+ 1045  oc adm policy add-scc-to-user anyuid -z image-pull
+ 1047  oc get pod
+ 1048  oc adm policy add-scc-to-user anyuid image-pull
+ 1049  oc get pod -w
+ 1050  oc set sa deploy/web1 image-pull
+ 1051  oc get pod -w
+ 1052  oc logs web1-6658fc547b-d2d4l 
+ 1055  oc delete pod web1-6658fc547b-d2d4l
+ 1057  oc get pod
+
