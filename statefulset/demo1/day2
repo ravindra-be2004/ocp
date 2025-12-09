@@ -1,0 +1,108 @@
+    1  podman ps
+    2  podman inspect web8 | grep IP
+    3  podman ps
+    4  ls
+    5  podman login registry.redhat.io
+    6  podman pull registry.redhat.io/rhel8/mysql-80:latest
+    7  podman images
+    8  podman run -d --name db1 -p 3306:3306 -e MYSQL_USER=user1 -e MYSQL_PASSWORD=redhat -e MYSQL_DATABASE=db1 registry.redhat.io/rhel8/mysql-80:latest 
+    9  podman ps db1
+   10  podman ps
+   11  podman exec -it db1 /bin/bash
+   12  podman run -d --name sbi -p 3307:3306 -e MYSQL_USER=user2 -e MYSQL_PASSWORD=redhat123 -e MYSQL_DATABASE=sbidb registry.redhat.io/rhel8/mysql-80:latest 
+   13  podman exec -it sbi /bin/bash
+   14  #podman pull registry.redhat.io/rhel8/mysql-80:latest
+   15  #podman login registry.redhat.io
+   16  podman search registry.ocp4.example.com:8443/
+   17  podman search registry.ocp4.example.com/
+   18  podman search registry.apps.ocp4.example.com/
+   19  podman login -u developer -p developer   registry.ocp4.example.com:8443
+   20  podman search registry.apps.ocp4.example.com/
+   21  podman search registry.apps.ocp4.example.com:8443/
+   22  podman images
+   23  skopeo login registry.ocp4.example.com:8443
+   24  skopeo search registry.apps.ocp4.example.com:8443/
+   25  podman pull registry.ocp4.example.com:8443/rhel8/mysql-80:latest
+   26  #podman login -u developer -p developer registry.ocp4.example.com:8443
+   27  podman pull registry.ocp4.example.com:8443/rhel8/mysql-80:latest
+   28  podman run -d --name maybank -p 3308:3306 -e MYSQL_USER=user3 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443/rhel8/mysql-80:latest 
+   29  podman ps
+   30  podman run -d --name maybank -p 3308:3306 -e MYSQL_USER=user3 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443/rhel8/mysql-80:latest 
+   31  podman ps 
+   32  podman run -d --name maybank -p 3309:3306 -e MYSQL_USER=user1 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443
+   33  #podman run -d --name maybank -p 3309:3306 -e MYSQL_USER=user1 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443
+   34  podman run -d --name maybank -p 3309:3306 -e MYSQL_USER=user1 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443/rhel8/mysql-80:latest
+   35  podman ps
+   36  podman exec -it maybank /bin/bash
+   37  #podman run -d --name maybank -p 3309:3306 -e MYSQL_USER=user1 -e MYSQL_PASSWORD=redhat321 -e MYSQL_DATABASE=mydb registry.ocp4.example.com:8443/rhel8/mysql-80:latest
+   38  podman exec -it maybank /bin/bash
+   39  podman ps
+   40  #podman run -d --name sbi -p 3307:3306 -e MYSQL_USER=user2 -e MYSQL_PASSWORD=redhat123 -e MYSQL_DATABASE=sbidb registry.redhat.io/rhel8/mysql-80:latest 
+   41  podman exec -it sbi /bin/bash
+   42  ls
+   43  vim Containerfile 
+   44  podman ps
+   45  podman stop --all
+   46  podman ps
+   47  podman rm --all
+   48  ls
+   49  podman images
+   50  podman rmi --all
+   51  podman imaes
+   52  podman images
+   53  ls
+   54  podman build -t myimage:v1 .
+   55  podman images
+   56  podman tag quay.io/ravindra_be2004/myhttpd:v1 localhost/myimage:v1 
+   57  podman tag localhost/myimage:v1 quay.io/ravindra_be2004/myhttpd:v1 
+   58  podman images
+   59  podman push quay.io/ravindra_be2004/myhttpd:v1 
+   60  podman login quay.io
+   61  podman push quay.io/ravindra_be2004/myhttpd:v1 
+   62  podman images
+   63  podman run -d --name web11 -p 8081:80 quay.io/ravindra_be2004/myhttpd:v1 
+   64  podman ps
+   65  curl localhost:8081
+   66  podman images
+   67  cd
+   68  ls
+   69  rm -rf ocp
+   70  git clone https://github.com/ravindra-be2004/ocp
+   71  ls
+   72  cd ocp
+   73  ls
+   74  cd statefulset/
+   75  ls
+   76  cd demo1
+   77  ls
+   78  pwd
+   79  ls
+   80  cd
+   81  #git clone https://github.com/ravindra-be2004/ocp
+   82  CD
+   83  cd
+   84  #git clone https://github.com/ravindra-be2004/ocp
+   85  cd ocp
+   86  cd statefulset/
+   87  cd demo1/
+   88  ls
+   89* podman build -t myimage:v1 .
+   90  podman images
+   91  #podman run -d --name sbi -p 3307:3306 -e MYSQL_USER=user2 -e MYSQL_PASSWORD=redhat123 -e MYSQL_DATABASE=sbidb registry.redhat.io/rhel8/mysql-80:latest 
+   92  podman login quay.io
+   93  podman logout --all
+   94  podman login quay.io
+   95  #podman tag localhost/myimage:v1 quay.io/ravindra_be2004/myhttpd:v1 
+   96  podman images
+   97  #podman tag localhost/myimage:v1 quay.io/ravindra_be2004/myhttpd:v1 
+   98  #podman images
+   99  #podman run -d --name web11 -p 8091:80 quay.io/ravindra_be2004/myhttpd:v1 
+  100  #curl localhost:8091
+  101  podman run -d --name web11 -p 8092:80 quay.io/ravindra_be2004/myhttpd:v1 
+  102  podman run -d --name web13 -p 8092:80 quay.io/ravindra_be2004/myhttpd:v1 
+  103  podman ps
+  104  curl localhost:8092
+  105  #podman run -d --name web13 -p 8091:80 quay.io/ravindra_be2004/myhttpd:v1 
+  106  #curl localhost:8091
+  107  history 
+  108  history >> day2
