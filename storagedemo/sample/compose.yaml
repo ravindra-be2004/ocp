@@ -1,0 +1,15 @@
+services:
+  db:
+    image: "registry.redhat.io/rhel8/mysql-80:latest"
+    container_name: "maybank"
+    environment:
+      MYSQL_USER: user1
+      MYSQL_PASSWORD: redhat
+      MYSQL_DATABASE: mydb
+    ports:
+      - "3311:3306"
+  web51:
+    image: "quay.io/ravindra_be2004/mydemo:v1"
+    container_name: "web51"
+    ports:
+      - "8084:8080"
