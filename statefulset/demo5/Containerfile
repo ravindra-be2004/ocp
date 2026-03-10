@@ -1,0 +1,18 @@
+FROM registry.redhat.io/ubi9/openjdk-17:1.24 AS builder
+
+WORKDIR /app
+
+COPY Hello.java .
+
+RUN javac Hello.java && ls -l
+#RUN jar cfe hello.jar Hello Hello.class
+RUN jar cvfe hello.jar Hello Hello.class
+
+# Stage 2: Runtime stage
+FROM registry.redhat.io/ubi9/openjdk-17:1.24
+
+WORKDIR /app
+
+COPY --from=builder /app/hello.jar .
+CMD ["java", "-jar", "hello.jar"]
+#CMD ["java", "Hello"]
