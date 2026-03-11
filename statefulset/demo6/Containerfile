@@ -9,14 +9,10 @@ RUN npm install
 
 COPY . .
 
-
 # -------- Stage 2 : Runtime stage ----------
 FROM registry.redhat.io/ubi9/nodejs-20-minimal:9.7
-
 WORKDIR /app
-
 COPY --from=builder /app /app
-
+user 1001
 EXPOSE 3000
-
 CMD ["npm", "start"]

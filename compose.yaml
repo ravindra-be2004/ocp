@@ -6,6 +6,8 @@ services:
       MYSQL_USER: user1
       MYSQL_PASSWORD: redhat
       MYSQL_DATABASE: mydb
+    volumes:
+      - data4:/var/lib/mysql
     ports:
       - "3311:3306"
   web51:
